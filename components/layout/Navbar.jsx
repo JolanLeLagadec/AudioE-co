@@ -21,14 +21,18 @@ export default function Navbar() {
                     <Link href='/'><h1 className='font-bold text-2xl flex justify-center w-full text-white -ml-7 md:ml-0'>audiophile</h1> </Link>   
                     </div>
                     <MenuNavbar />      
+                    <div className='flex flex-row-reverse items-center gap-6'>
+                    <Link href='/register'><button className='uppercase font-light tracking-widest text-white'>login</button></Link>
                     <Image
                     className='cursor-pointer '
                     src={CartIcon}
-                    width={20}
+                    width={25}
                     height={20}
                     alt='cart'
 
                      />
+                    </div>
+               
                 </div>
                 
             </div>

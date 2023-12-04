@@ -46,7 +46,7 @@ export default function Home() {
       {/* menu */}
       <div className='relative container mx-auto z-20 bg-white rounded-b-xl lg:py-24'>
         <div className='flex flex-col gap-4 md:flex-row items-center justify-center px-3 md:px-0 py-16 lg:gap-8'>
-          <div className=' bg-gray flex flex-col items-center  gap-4 w-[20rem] drop-shadow-lg  rounded-lg '>
+          <div className=' bg-gray flex flex-col items-center gap-4 w-[20rem] drop-shadow-lg  rounded-lg '>
             <Image
               className='-mt-12 drop-shadow-2xl  '
               src={headPhones}

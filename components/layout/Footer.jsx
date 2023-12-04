@@ -27,10 +27,7 @@ export default function Footer() {
                         <Image width={30} height={50} src={iconInsta} alt='iconfb' />
                     </div>
                     </div>
-                
-
             </div>
-
         </div>
     )
 }
