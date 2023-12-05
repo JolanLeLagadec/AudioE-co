@@ -3,6 +3,8 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import MobileMenu from '@/components/layout/MobileMenu'
 import Footer from '@/components/layout/Footer'
+import AudioGear from '@/components/layout/AudioGear'
+import Menu from '@/components/layout/Menu'
 
 const inter = Manrope({ subsets: ['latin'] })
 
@@ -19,7 +21,7 @@ export default function RootLayout({ children }) {
         <Navbar />       
         <main className='relative '> 
           {children}
-        </main>
+        </main>  
         <Footer />
       </body>
     </html>

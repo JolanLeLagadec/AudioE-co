@@ -2,10 +2,6 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import headphones from '@/public/assets/home/mobile/image-header.jpg'
 import Link from 'next/link'
-import ButtonShop from '@/components/ui/ButtonShop'
-import headPhones from '@/public/assets/headphones-nobg.png'
-import earPhones from '@/public/assets/earphones-nobg.png'
-import speaker from '@/public/assets/speaker-nobg.png'
 import speaker2 from '@/public/assets/home/mobile/image-speaker-zx9.png'
 import speaker3 from '@/public/assets/home/desktop/image-speaker-zx9.png'
 import speaker4 from '@/public/assets/home/mobile/image-speaker-zx7.jpg'
@@ -13,9 +9,9 @@ import earphones from '@/public/assets/home/mobile/image-earphones-yx1.jpg'
 import earphonesDesktop from '@/public/assets/home/desktop/image-earphones-yx1.jpg'
 import earphonesTablet from '@/public/assets/home/tablet/image-earphones-yx1.jpg'
 import speaker4desktop from '@/public/assets/home/desktop/image-speaker-zx7.jpg'
-import imagebestgearMobile from '@/public/assets/shared/mobile/image-best-gear.jpg'
-import imagebestgearTablet from '@/public/assets/shared/tablet/image-best-gear.jpg'
-import imagebestgearDesktop from '@/public/assets/shared/desktop/image-best-gear.jpg'
+import Menu from '@/components/layout/Menu'
+import AudioGear from '@/components/layout/AudioGear'
+
 
 
 export default function Home() {
@@ -43,54 +39,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* menu */}
-      <div className='relative container mx-auto z-20 bg-white rounded-b-xl lg:py-24'>
-        <div className='flex flex-col gap-4 md:flex-row items-center justify-center px-3 md:px-0 py-16 lg:gap-8'>
-          <div className=' bg-gray flex flex-col items-center gap-4 w-[20rem] drop-shadow-lg  rounded-lg '>
-            <Image
-              className='-mt-12 drop-shadow-2xl  '
-              src={headPhones}
-              width={75}
-              height={75}
-              alt='headphones'
-            />
-            <div className='flex flex-col items-center gap-4 mt-2 py-4'>
-              <h1 className='text-sm font-semibold'>HEADPHONES</h1>
-              <Link href='/headphones'><ButtonShop /></Link>
-
-            </div>
-          </div>
-          <div className='relative bg-gray flex flex-col items-center gap-4 w-[20rem] drop-shadow-lg  rounded-lg mt-12 md:mt-0'>
-            <Image
-              className='-mt-11 drop-shadow-2xl '
-              src={speaker}
-              width={75}
-              height={75}
-              alt='headphones'
-            />
-            <div className='flex flex-col items-center gap-4 mt-2 py-4'>
-              <h1 className='text-sm font-semibold'>SPEAKERS</h1>
-              <Link href='/speaker'><ButtonShop /></Link>
-
-            </div>
-          </div>
-          <div className='relative bg-gray flex flex-col items-center h-[150px]  gap-4 w-[20rem] drop-shadow-lg mt-12 rounded-lg md:mt-0 '>
-            <Image
-              className='-mt-9 drop-shadow-2xl '
-              src={earPhones}
-              width={75}
-              height={75}
-              alt='headphones'
-            />
-            <div className='flex flex-col items-center gap-4 mt-2 py-4'>
-              <h1 className='text-sm font-semibold'>EARPHONES</h1>
-              <Link href='/earphones'><ButtonShop /></Link>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <Menu />  
       <div className='p-4 '>
         <div className='container overflow-hidden mx-auto flex flex-col md:flex-row justify-center items-center bg-darkOrange relative py-12 md:py-0 gap-8 rounded-lg md:gap-16'>
           <div className='md:hidden'>
@@ -170,41 +119,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <div className='mx-auto container mt-28'>
-          <div className='flex flex-col lg:flex-row-reverse items-center justify-center w-full xxl:-space-x-10'>
-            <Image
-              width={400}
-              height={400}
-              src={imagebestgearMobile}
-              alt='info'
-              className=' md:hidden w-full rounded-xl max-w-[500px]'
-            />
-            <Image
-              width={400}
-              height={400}
-              src={imagebestgearTablet}
-              alt='info'
-              className='hidden md:block lg:hidden w-full rounded-xl'
-            />
-            <Image
-              width={550}
-              height={400}
-              src={imagebestgearDesktop}
-              alt='info'
-              className='hidden lg:block  rounded-xl lg:w-[500px] xl:w-[550px]'
-            />
-            <div className='flex flex-col items-center lg:items-start justify-center gap-6 text-center lg:text-left xl:w-2/3 w-full '>
-            <p className='text-5xl text-black font-bold max-w-[450px] md:max-w-[600px] uppercase  mt-6 py-5 leading-[3.5rem] '>Bringing you the <span className='text-darkOrange'>best</span> audio gear</p>
-            <p className='font-light w-[21rem] leading-7 md:w-3/4'>Located at the heart of New York City, Audiophile is the premier store for high end headphones,
-              earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration
-              rooms available for you to browse and experience a wide range of our products. Stop by our store
-              to meet some of the fantastic people who make Audiophile the best place to buy your portable
-              audio equipment.</p>    
-            </div>
-           
-          </div>
-        </div>
+        <AudioGear />
       </div>
     </main>
   )

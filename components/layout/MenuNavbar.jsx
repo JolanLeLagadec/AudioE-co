@@ -12,7 +12,7 @@ export default function MenuNavbar() {
                     
     {
         navItems.map((item) => (
-            <Link key={item} href={`${item === 'HOME' ? '/' : item.toLowerCase()}`}>
+            <Link key={item} href={`${item === 'HOME' ? '/' : `/${item.toLowerCase()}`}`}>
             <span 
             onClick={() => setSelectedItem(item)} 
             key={item}

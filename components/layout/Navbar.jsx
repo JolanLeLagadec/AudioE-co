@@ -6,11 +6,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import MenuNavbar from './MenuNavbar'
 import MobileMenu from './MobileMenu'
+import { auth } from '@/app/auth'
 
 
-export default function Navbar() {
+export default async function Navbar() {
 
-   
+   const session = await auth()
+   console.log(session)
 
     return (
         <div className='bg-neutralBlack h-fit fixed z-30 w-full'>
@@ -18,7 +20,7 @@ export default function Navbar() {
                 <div className=' flex justify-between items-center border-b border-lightGray border-opacity-20 py-10 px-5 w-full '>
                     <div className='flex justify-between items-center w-2/3 md:w-auto md:gap-12 '>
                     <HamburgerMenu />
-                    <Link href='/'><h1 className='font-bold text-2xl flex justify-center w-full text-white -ml-7 md:ml-0'>audiophile</h1> </Link>   
+                    <Link href='/'><h1 className='font-bold text-2xl flex justify-center w-full text-white text-center -ml-10  md:ml-0'>audiophile</h1> </Link>   
                     </div>
                     <MenuNavbar />      
                     <div className='flex flex-row-reverse items-center gap-6'>
