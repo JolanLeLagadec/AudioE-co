@@ -1,10 +1,8 @@
 import { Manrope } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
-import MobileMenu from '@/components/layout/MobileMenu'
 import Footer from '@/components/layout/Footer'
-import AudioGear from '@/components/layout/AudioGear'
-import Menu from '@/components/layout/Menu'
+import Cart from './cart/Cart'
 
 const inter = Manrope({ subsets: ['latin'] })
 
@@ -18,7 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />       
+        <Navbar />
+        <Cart />       
         <main className='relative '> 
           {children}
         </main>  

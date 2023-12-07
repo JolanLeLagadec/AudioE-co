@@ -26,7 +26,7 @@ model Cart {
   updatedAt DateTime @updatedAt
 
   user     User?      @relation(fields: [userId], references: [id])
-  cartItem CartItem[]
+  items CartItem[]
 }
 
 model CartItem {

@@ -1,5 +1,6 @@
 'use client'
 import Button from '@/components/ui/Button'
+import { createCart } from '@/lib/actionsCart/actions'
 import { Minus, Plus } from 'lucide-react'
 import React, { useState } from 'react'
 
@@ -12,7 +13,7 @@ export default function ButtonAddCart() {
         <span className='text-black'>{value}</span>
         <button onClick={() => setValue(value + 1)} name="" id=""><Plus width={20} color='#9CA3AF' /></button>
         </div>
-        <Button variant='primary'>ADD TO CART</Button>
+        <Button onClick={createCart} variant='primary'>ADD TO CART</Button>
     </div>
   )
 }

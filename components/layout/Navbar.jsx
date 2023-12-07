@@ -1,18 +1,19 @@
 
 import React from 'react'
 import HamburgerMenu from '../HamburgerMenu'
-import  CartIcon  from '@/public/assets/starter-code/assets/shared/desktop/icon-cart.svg'
-import Image from 'next/image'
 import Link from 'next/link'
 import MenuNavbar from './MenuNavbar'
 import MobileMenu from './MobileMenu'
-import { auth } from '@/app/auth'
+import { auth, signOut } from '@/app/auth'
+import CartIcon from '../CartIcon'
+
 
 
 export default async function Navbar() {
 
    const session = await auth()
    console.log(session)
+   
 
     return (
         <div className='bg-neutralBlack h-fit fixed z-30 w-full'>
@@ -24,15 +25,24 @@ export default async function Navbar() {
                     </div>
                     <MenuNavbar />      
                     <div className='flex flex-row-reverse items-center gap-6'>
-                    <Link href='/register'><button className='uppercase font-light tracking-widest text-white'>login</button></Link>
-                    <Image
-                    className='cursor-pointer '
-                    src={CartIcon}
-                    width={25}
-                    height={20}
-                    alt='cart'
-
-                     />
+                        {
+                           !session ? (
+                            <Link href='/register'><button className='uppercase font-light tracking-widest text-white'>login</button></Link>
+                           ) : (
+                            <form action={    
+                                async () => {
+                                    'use server'
+                                    await signOut()
+                                }
+                            }>
+                            <button className='uppercase font-light tracking-widest text-white'>
+                                logout
+                            </button>
+                            </form>
+                           )
+                        }
+                   
+                 <CartIcon />
                     </div>
                
                 </div>
