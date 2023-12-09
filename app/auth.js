@@ -3,11 +3,12 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { authConfig } from "./authConfig";
 import  db  from "@/lib/db/db";
 import bcrypt from "bcrypt";
+import { mergeCarts } from "@/lib/actionsCart/actions";
 
 // test avec server actions (implique authConfig, et middleware)(bêta)
 
 const login = async (credentials) => {
-  console.log('ici credentialssss', credentials.email)
+
   try {
     if (!credentials?.email || !credentials?.password) {
       return null;
@@ -15,7 +16,7 @@ const login = async (credentials) => {
     const user = await db.user.findUnique({
       where: { email: credentials.email },
     });
-    console.log(user, 'ici userrrrrrrr')
+
     if (!user || !user?.hashedPassword) {
       return null;
     }
@@ -50,6 +51,9 @@ export const { signIn, signOut, auth } = NextAuth({
   ],
   // ADD ADDITIONAL INFORMATION TO SESSION
   callbacks: {
+    async signIn(){
+        await mergeCarts()
+    },
     async jwt({ token, user }) {
       if (user) {
         token.name = user.name;

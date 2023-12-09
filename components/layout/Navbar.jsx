@@ -12,9 +12,7 @@ import CartIcon from '../CartIcon'
 export default async function Navbar() {
 
    const session = await auth()
-   console.log(session)
-   
-
+ 
     return (
         <div className='bg-neutralBlack h-fit fixed z-30 w-full'>
             <div className=' container mx-auto'>         
@@ -40,16 +38,12 @@ export default async function Navbar() {
                             </button>
                             </form>
                            )
-                        }
-                   
+                        }           
                  <CartIcon />
-                    </div>
-               
-                </div>
-                
+                    </div>          
+                </div>       
             </div>
-            <MobileMenu />
-           
+            <MobileMenu />     
         </div>
     )
 }

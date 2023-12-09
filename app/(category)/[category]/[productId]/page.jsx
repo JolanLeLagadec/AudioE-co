@@ -14,7 +14,7 @@ import MayAlsoLike from './MayAlsoLike'
             category: true
         }
     })
-    console.log(products)
+    
 
 export const generateStaticParams = async () => { // On génère les paramètres en static pour build les différentes pages au moment du build, et non à la demande, comportement par défaut avec les routes dynamiques.
   return products.map(product => ({
@@ -60,7 +60,7 @@ export default async function PageProduct({ params }) {
                     <h1 className='text-3xl font-bold uppercase lg:text-3xl w-[20rem] lg:w-[25rem]'>{product.name}</h1>
                     <p className='w-[25rem] md:w-[20rem] leading-7 text-neutralBlack opacity-75 lg:w-[30rem]'>{product.description}</p>
                     <span className='text-black font-extrabold text-md'>$ {product.price}</span>
-                    <ButtonAddCart />
+                    <ButtonAddCart productId= {productId} />
                 </div>
                      
                 </div>   

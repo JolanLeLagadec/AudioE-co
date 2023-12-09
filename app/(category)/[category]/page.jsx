@@ -1,18 +1,15 @@
 import Header from '@/components/Header'
 import React from 'react'
 import Product from './Product'
-import { getProducts } from './getProducts'
+import { getProducts } from './actions'
 
 export default async function Category({ params }) {
 
     const { category } = params
 
-    console.log(category, 'ici paramssssss')
 
     const catProducts = await getProducts(category)
     const products = catProducts.map(cat => cat.product)
-
-
 
     return (
         <div>
