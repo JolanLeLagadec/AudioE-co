@@ -17,7 +17,7 @@ export default async function Category({ params }) {
                 <Header label={category} />
                 <div className='p-4 flex flex-col items-center mt-6 gap-8 mb-14'>
                     {
-                        products[0].map((product, index) => (
+                        products[0]?.map((product, index) => (
                             <div key={product.id}>
                                 <Product data={product} reverse={index % 2 === 1} cat={category} />
                             </div>

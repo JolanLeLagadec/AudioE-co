@@ -6,44 +6,42 @@ import { Minus, Plus } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { deleteCart, incrementQuantity } from '../(category)/[category]/actions'
+import Link from 'next/link'
 
 export default function Cart() {
 
-    const [cart, setCart] = useState(0)
+    const [cart, setCart] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [newValue, setNewValue] = useState(null)
     const cartModale = useCart()
     const cartRef = useRef()
     const [quantities, setQuantities] = useState({})
 
-    console.log(newValue, 'ici neww valueeee')
-    
+
     const countItems = cart?.items?.length
 
-    const updateQuantities =  async (itemId, newQuantity) => {
+    const updateQuantities = async (itemId, newQuantity) => {
         setIsLoading(true)
-        console.log(newQuantity, 'ici newquantityy') 
-      await incrementQuantity(newQuantity, itemId)
-      setQuantities({...quantities, [itemId]: newQuantity})
-      cartModale.setItemsCount(newQuantity)
-      setIsLoading(false)
-     
+        await incrementQuantity(newQuantity, itemId)
+        setQuantities({ ...quantities, [itemId]: newQuantity })
+        cartModale.setItemsCount(newQuantity)
+        setIsLoading(false)
     }
 
 
     useEffect(() => {
         const fetchCart = async () => {
             const panier = await getCart()
-            setCart(panier)            
+            console.log(panier)
+            setCart(panier)
             const newQuantities = {}
             panier?.items?.forEach(item => newQuantities[item.id] = parseInt(item.quantity))
             setQuantities(newQuantities)
         }
-        fetchCart()        
+        fetchCart()
     }, [cartModale.itemsCount])
 
     const handleClickOutside = (event) => {
-        if (cartRef.current && !cartRef.current.contains(event.target) && !cartRef.) {
+        if (cartRef.current && !cartRef.current.contains(event.target)) {
             cartModale.setIsOpen();
         }
     };
@@ -53,7 +51,6 @@ export default function Cart() {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-
 
     if (!cartModale.isOpen) {
         return null;
@@ -71,11 +68,12 @@ export default function Cart() {
                         <>
                             <div className='flex flex-col justify-center items-center gap-3'>
                                 <div className='flex justify-between items-center w-full '>
-                                    <span>CART(<span>{countItems}</span>)</span>
+                                    <span className='font-bold text-lg'>CART(<span>{countItems}</span>)</span>
                                     <button onClick={() => {
-                                         deleteCart(cart.id)
-                                         cartModale.setItemsCount(0)}}
-                                          className='text-neutralBlack text-md font-light'>remove all</button>
+                                        deleteCart(cart.id)
+                                        cartModale.setItemsCount(0)
+                                    }}
+                                        className='text-neutralBlack text-md font-light opacity-75'>Remove all</button>
                                 </div>
                                 {
                                     cart?.items.map((item) => (
@@ -95,24 +93,22 @@ export default function Cart() {
                                             </div>
                                             <div className='p-4 flex flex-row bg-lightGray gap-4 justify-center items-center'>
                                                 <button
-                                                disabled={isLoading}
-                                                className='disabled:cursor-not-allowed'
-                                                 onClick={() => {
-                                                const newQte = quantities[item.id] > 0 ? quantities[item.id] - 1 : 0
-                                                  updateQuantities(item.product.id, newQte)
-                                                  }} name="" id=""><Minus width={20} color='#9CA3AF' /></button>
+                                                    disabled={isLoading}
+                                                    className='disabled:cursor-not-allowed'
+                                                    onClick={() => {
+                                                        const newQte = quantities[item.id] > 0 ? quantities[item.id] - 1 : 0
+                                                        updateQuantities(item.product.id, newQte)
+                                                    }} name="" id=""><Minus width={20} color='#9CA3AF' /></button>
                                                 <span className='text-black'>{quantities[item.id] || 0}</span>
                                                 <button
-                                                disabled={isLoading}
-                                                className='disabled:cursor-not-allowed'
-                                                 onClick={() => {
-                                                const newQte = quantities[item.id] + 1
-                                                updateQuantities(item.product.id, newQte )
-                                                }}
-                                                  name="" id=""><Plus width={20} color='#9CA3AF' /></button>
+                                                    disabled={isLoading}
+                                                    className='disabled:cursor-not-allowed'
+                                                    onClick={() => {
+                                                        const newQte = quantities[item.id] + 1
+                                                        updateQuantities(item.product.id, newQte)
+                                                    }}
+                                                    name="" id=""><Plus width={20} color='#9CA3AF' /></button>
                                             </div>
-
-
                                         </div>
                                     ))
                                 }
@@ -124,12 +120,13 @@ export default function Cart() {
                     <span className='font-bold'>${cart?.subtotal || 0}</span>
                 </div>
                 <div className=' w-full flex justify-center'>
-                    <Button variant='primary' className='uppercase w-[20rem]'>checkout</Button>
+                    {
+                        cart?.userId !== null ? (
+                            <Link href='/checkout'><Button disabled={!cart?.items || cart?.items.length === 0 } onClick={() => cartModale.setIsOpen()} variant='primary' className='disabled:opacity-75 disabled:cursor-not-allowed  uppercase w-[20rem]'>checkout</Button></Link>
+                        ) :  <Link href='/login'><Button disabled={!cart?.items || cart?.items.length === 0 } onClick={() => cartModale.setIsOpen()} variant='primary' className='disabled:opacity-75 disabled:cursor-not-allowed  uppercase w-[20rem]'>checkout</Button></Link>
+                    }
                 </div>
-
-
             </div>
         </div>
-
     )
 }

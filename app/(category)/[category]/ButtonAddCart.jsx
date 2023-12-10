@@ -15,7 +15,7 @@ export default function ButtonAddCart({ productId }) {
    const res = await incrementQuantity(value, productId)
   cart.setItemsCount(value)
   }
-  console.log(cart.cart)
+
 
 
   return (

@@ -27,7 +27,7 @@ export const getProducts = async (cat) => {
 export const incrementQuantity = async (qte, id) => {
 const productId = parseInt(id)
   const cart = await getCart() ?? await createCart();
-  console.log(cart)
+ 
   // On vérifie d'abord si il existe un panier, si non on le créer. Dans notre fonction on retourne un panier vide donc on pourra l'utuliser directement.
   // Ensuite on vérifie si on a déjà l'item dans notre panier
   // Si on a l'item mais que sa qte est de 0 alors on le supprime de notre panier

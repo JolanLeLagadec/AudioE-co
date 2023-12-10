@@ -3,5 +3,6 @@ export const authConfig = {
   pages: {
     signIn: "/login",
   },
-  callbacks: {}
+  callbacks: {
+  }
 };
