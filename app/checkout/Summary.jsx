@@ -1,5 +1,4 @@
 import Button from '@/components/ui/Button'
-import { getCart } from '@/lib/actionsCart/actions'
 import Image from 'next/image'
 import React from 'react'
 

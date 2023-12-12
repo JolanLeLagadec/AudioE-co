@@ -11,9 +11,11 @@ export default function ButtonAddCart({ productId }) {
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState(0)
   const cart = useCart()
+  
+
   const handleIncrementQuantity =  async (value, productId) => {
-   const res = await incrementQuantity(value, productId)
-  cart.setItemsCount(value)
+  await incrementQuantity(value, productId)
+  cart.setQuantityUpdated(!cart.quantityUpdated)
   }
 
 

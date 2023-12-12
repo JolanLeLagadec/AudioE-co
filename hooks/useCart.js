@@ -3,9 +3,9 @@ import { create } from 'zustand'
 const useCart = create((set, get) => ({
     
 isOpen: false,
-itemsCount: 0,
+quantityUpdated: false,
 setIsOpen: () => set({isOpen: !get().isOpen}),
-setItemsCount: (count) => set({itemsCount: count})
+setQuantityUpdated: () => set({quantityUpdated: new Date().getTime()})
 
 }))
 

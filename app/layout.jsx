@@ -3,6 +3,8 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Cart from './cart/Cart'
+import { auth } from './auth'
+
 
 const inter = Manrope({ subsets: ['latin'] })
 
@@ -12,12 +14,16 @@ export const metadata = {
 }
 
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const user = await auth()
+  console.log(user)
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <Cart />       
+        <Cart user={user} />       
         <main className='relative '> 
           {children}
         </main>  

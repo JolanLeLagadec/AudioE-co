@@ -4,6 +4,8 @@ import { authConfig } from "./authConfig";
 import  db  from "@/lib/db/db";
 import bcrypt from "bcrypt";
 import { mergeCarts } from "@/lib/actionsCart/actions";
+import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
 // test avec server actions (implique authConfig, et middleware)(bêta)
 
@@ -35,6 +37,8 @@ const login = async (credentials) => {
   }
 };
 
+
+
 export const { signIn, signOut, auth } = NextAuth({
   ...authConfig, 
   providers: [
@@ -52,8 +56,9 @@ export const { signIn, signOut, auth } = NextAuth({
   // ADD ADDITIONAL INFORMATION TO SESSION
   callbacks: {
     async signIn({ user }){
-      await mergeCarts(user.id)
-      return true
+      console.log('on est dans le merge')
+      await mergeCarts(user.id)  
+      return true    
     },
     async jwt({ token, user }) {
       if (user) {

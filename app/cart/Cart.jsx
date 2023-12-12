@@ -8,37 +8,56 @@ import React, { useEffect, useRef, useState } from 'react'
 import { deleteCart, incrementQuantity } from '../(category)/[category]/actions'
 import Link from 'next/link'
 
-export default function Cart() {
+export default function Cart({ user }) {
 
-    const [cart, setCart] = useState([])
+    const handleGetCart = async () => {
+        const cart = await getCart()
+        setCart(cart)
+    }
+  
+    
+    const [cart, setCart] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const cartModale = useCart()
     const cartRef = useRef()
-    const [quantities, setQuantities] = useState({})
-
-
+    console.log(cart, 'ici cart après merge')
+   
     const countItems = cart?.items?.length
 
-    const updateQuantities = async (itemId, newQuantity) => {
+    // Premier rendu: on a les state initiaux, le useEffect lance handleGetCart
+    // handleGetCart provoque un re rendu en stockant le panier dans un état local
+    // Dans le panier, on requête le serveur pour incrémenter les quantités d'un item selon la présence d'un produit.
+    // Lorsque qu'on incrémente les quantités on veut provoquer un re rendu pour cela : trigger useEffect et set le nouveau panier. Quantités à jour.
+
+    const updateQuantities = async (item, newQuantity) => {
+        let res;
         setIsLoading(true)
-        await incrementQuantity(newQuantity, itemId)
-        setQuantities({ ...quantities, [itemId]: newQuantity })
-        cartModale.setItemsCount(newQuantity)
+        try {
+             res = await incrementQuantity(newQuantity, item.product.id);
+        }catch(e){
+            console.log(e)
+        } 
+        if(res){
+            cartModale.setQuantityUpdated()
+        }
         setIsLoading(false)
+
+    };
+    const deleteUserCart = async (cartId) => {
+        if(cart){
+            const res = await deleteCart(cartId)
+        if(res){
+            cartModale.setQuantityUpdated()
+        }
+        }
     }
 
-
     useEffect(() => {
-        const fetchCart = async () => {
-            const panier = await getCart()
-            console.log(panier)
-            setCart(panier)
-            const newQuantities = {}
-            panier?.items?.forEach(item => newQuantities[item.id] = parseInt(item.quantity))
-            setQuantities(newQuantities)
-        }
-        fetchCart()
-    }, [cartModale.itemsCount])
+            const fetchCart = async () => {
+                await handleGetCart()
+            }   
+          fetchCart()  
+    }, [cartModale.quantityUpdated, user])
 
     const handleClickOutside = (event) => {
         if (cartRef.current && !cartRef.current.contains(event.target)) {
@@ -55,6 +74,7 @@ export default function Cart() {
     if (!cartModale.isOpen) {
         return null;
     }
+  
     return (
         <div>
             <div className='w-full h-screen fixed bg-neutralBlack opacity-80 mt-[113px] z-30'>
@@ -69,15 +89,12 @@ export default function Cart() {
                             <div className='flex flex-col justify-center items-center gap-3'>
                                 <div className='flex justify-between items-center w-full '>
                                     <span className='font-bold text-lg'>CART(<span>{countItems}</span>)</span>
-                                    <button onClick={() => {
-                                        deleteCart(cart.id)
-                                        cartModale.setItemsCount(0)
-                                    }}
+                                    <button onClick={() => deleteUserCart(cart.id)}
                                         className='text-neutralBlack text-md font-light opacity-75'>Remove all</button>
                                 </div>
                                 {
-                                    cart?.items.map((item) => (
-                                        <div key={item.id} className='flex justify-between items-center w-full '>
+                                    cart?.items?.map((item, index) => (
+                                        <div key={index} className='flex justify-between items-center w-full '>
                                             <div className='flex flex-row items-center gap-4'>
                                                 <Image
                                                     src={item?.product.imageUrl?.replace('public', '')}
@@ -96,16 +113,16 @@ export default function Cart() {
                                                     disabled={isLoading}
                                                     className='disabled:cursor-not-allowed'
                                                     onClick={() => {
-                                                        const newQte = quantities[item.id] > 0 ? quantities[item.id] - 1 : 0
-                                                        updateQuantities(item.product.id, newQte)
+                                                        const newQte = item.quantity > 0 ? item.quantity - 1 : 0
+                                                        updateQuantities(item, newQte)
                                                     }} name="" id=""><Minus width={20} color='#9CA3AF' /></button>
-                                                <span className='text-black'>{quantities[item.id] || 0}</span>
+                                                <span className='text-black'>{item.quantity || 0}</span>
                                                 <button
                                                     disabled={isLoading}
                                                     className='disabled:cursor-not-allowed'
                                                     onClick={() => {
-                                                        const newQte = quantities[item.id] + 1
-                                                        updateQuantities(item.product.id, newQte)
+                                                        const newQte = item.quantity + 1
+                                                        updateQuantities(item, newQte)
                                                     }}
                                                     name="" id=""><Plus width={20} color='#9CA3AF' /></button>
                                             </div>

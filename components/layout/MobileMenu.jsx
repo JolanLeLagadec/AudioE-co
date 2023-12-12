@@ -39,7 +39,7 @@ if(!menu.isOpen){
             />
             <div className='flex flex-col items-center gap-4 mt-2 py-4'>
               <h1 className='text-sm font-semibold'>HEADPHONES</h1>
-              <Link href='/headphones'><ButtonShop /></Link>
+              <Link href='/headphones'><ButtonShop onClick={() => menu.setIsOpen()} /></Link>
 
             </div>
           </div>
@@ -53,7 +53,7 @@ if(!menu.isOpen){
             />
             <div className='flex flex-col items-center gap-4 mt-2 py-4'>
               <h1 className='text-sm font-semibold'>SPEAKERS</h1>
-              <Link href='/speaker'><ButtonShop /></Link>
+              <Link href='/speakers'><ButtonShop onClick={() => menu.setIsOpen()} /></Link>
 
             </div>
           </div>
@@ -67,7 +67,7 @@ if(!menu.isOpen){
             />
             <div className='flex flex-col items-center gap-4 mt-2 py-4'>
               <h1 className='text-sm font-semibold'>EARPHONES</h1>
-              <Link href='/earphones'><ButtonShop /></Link>
+              <Link  href='/earphones'><ButtonShop onClick={() => menu.setIsOpen()} /></Link>
 
             </div>
           </div>

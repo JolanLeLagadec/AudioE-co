@@ -4,5 +4,6 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
+    
   }
 };

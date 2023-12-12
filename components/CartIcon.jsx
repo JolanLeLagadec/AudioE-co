@@ -15,7 +15,7 @@ export default function CartIcon() {
         width={25}
         height={20}
         alt='cart'
-        onClick={() => cart.setIsOpen()}
+        onClick={cart.isOpen ? null : () => cart.setIsOpen()}
     />
     </div>
   )
