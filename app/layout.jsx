@@ -17,7 +17,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
 
   const user = await auth()
-  console.log(user)
+  
 
   return (
     <html lang="en">
