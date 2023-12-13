@@ -14,7 +14,8 @@ import MayAlsoLike from './MayAlsoLike'
             category: true
         }
     })
-    
+
+export const dynamic = 'force-static'
 
 export const generateStaticParams = async () => { // On génère les paramètres en static pour build les différentes pages au moment du build, et non à la demande, comportement par défaut avec les routes dynamiques.
   return products.map(product => ({

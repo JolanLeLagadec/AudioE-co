@@ -2,7 +2,7 @@
 
 import useCart from "@/hooks/useCart"
 import Image from "next/image"
-import  CartIcone  from '@/public/assets/starter-code/assets/shared/desktop/icon-cart.svg'
+import  CartIcone  from '@/public/assets/shared/desktop/icon-cart.svg'
 
 export default function CartIcon() {
     const cart = useCart()

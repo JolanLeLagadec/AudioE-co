@@ -19,9 +19,9 @@ export default function LoginForm() {
     // If used with a Server Action, useFormState allows the server’s response from submitting the form to be shown even before hydration has completed.
 
     return (
-        <div className='mt-[113px] w-full min-h-screen p-6 bg-gradient-to-bl from-slate-200 to-gray'>
-            <div className='flex justify-center items-center bg-white  border border-gray drop-shadow-sm w-[25rem] mx-auto rounded-md mt-10 md:w-1/2 lg:w-3/4'>
-                <form  className=' flex flex-col justify-start items-center p-6 gap-8 xl:w-[30rem] xl:py-8' action={formAction}>
+        <div className='mt-[113px] w-full min-h-screen p-4 md:p-6 bg-gradient-to-bl from-slate-200 to-gray'>
+            <div className='flex justify-center items-center bg-white  border border-gray drop-shadow-sm w-full mx-auto rounded-md mt-10 md:w-1/2 lg:w-3/4'>
+                <form  className=' flex flex-col w-3/4 justify-start items-center p-6 gap-8 xl:w-[30rem] xl:py-8' action={formAction}>
                     <div className='flex flex-col items-start gap-4 w-full'>
                         <h1 className=' font-light text-3xl text-black uppercase tracking-widest' >Login</h1>
                         <p className='font-light text-black opacity-80 text-lg'>Enter your details below to sign in.</p>

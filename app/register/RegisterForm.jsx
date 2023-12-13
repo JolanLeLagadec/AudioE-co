@@ -9,9 +9,9 @@ export default function RegisterForm() {
 
 
   return (
-    <div className='mt-[113px] w-full min-h-screen p-6 bg-gradient-to-b from-slate-300 to-gray '>  
-        <div className='flex justify-center items-center bg-white border border-gray drop-shadow-sm w-[25rem] mx-auto rounded-md mt-10 md:w-1/2 lg:w-3/4'>
-        <form className=' flex flex-col justify-start items-center p-6 gap-8' action={createUser}>
+    <div className='mt-[113px] w-full min-h-screen p-4 md:p-6 bg-gradient-to-b from-slate-300 to-gray '>  
+        <div className='flex justify-center items-center bg-white border border-gray drop-shadow-sm w-full mx-auto rounded-md mt-10 md:w-1/2 lg:w-3/4'>
+        <form className=' flex flex-col justify-start items-center p-6 gap-8 ' action={createUser}>
             <div className='flex flex-col gap-4'>
             <h1 className=' font-light text-3xl text-black uppercase tracking-widest'>Register</h1>
             <p className='font-light text-black opacity-80 text-lg'>Enter your details below to create a new account.</p>

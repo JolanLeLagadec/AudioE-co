@@ -56,7 +56,6 @@ export const { signIn, signOut, auth } = NextAuth({
   // ADD ADDITIONAL INFORMATION TO SESSION
   callbacks: {
     async signIn({ user }){
-      c
       await mergeCarts(user.id)  
       return true    
     },

@@ -78,7 +78,7 @@ export default function Cart({ user }) {
         <div>
             <div className='w-full h-screen fixed bg-neutralBlack opacity-80 mt-[113px] z-30'>
             </div>
-            <div ref={cartRef} className=' right-7 top-[15rem] h-auto p-6 w-[25rem] bg-white fixed z-40 rounded-lg min-h-[10rem]'>
+            <div ref={cartRef} className=' right-0 md:right-7 top-[15rem] h-auto p-6 w-[25rem] bg-white fixed z-40 rounded-lg min-h-[10rem]'>
                 {
                     !countItems ? (
                         <div className='flex justify-center items-center text-neutralBlack uppercase tracking-widest opacity-75 text-2xl font-light' >
