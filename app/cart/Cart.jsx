@@ -20,8 +20,7 @@ export default function Cart({ user }) {
     const [isLoading, setIsLoading] = useState(false)
     const cartModale = useCart()
     const cartRef = useRef()
-    console.log(cart, 'ici cart après merge')
-   
+  
     const countItems = cart?.items?.length
 
     // Premier rendu: on a les state initiaux, le useEffect lance handleGetCart
