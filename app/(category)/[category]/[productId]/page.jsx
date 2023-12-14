@@ -7,7 +7,7 @@ import GoBack from './GoBack'
 import MayAlsoLike from './MayAlsoLike'
 
 
- const dynamicParams = false
+ export const dynamic = 'force-static'
 
     const products = await db.product.findMany({
         select: {
@@ -15,13 +15,9 @@ import MayAlsoLike from './MayAlsoLike'
             category: true
         }
     })
-
-   
-
  export const generateStaticParams = async () => { // On génère les paramètres en static pour build les différentes pages au moment du build, et non à la demande, comportement par défaut avec les routes dynamiques.
    return products.map(product => ({
         params: {
-       category: product.category.name,
        product: product.id.toString()
         }
      }))  

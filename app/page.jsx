@@ -34,7 +34,7 @@ export default function Home() {
               <h1 className='text-lightGray font-extralight opacity-80 tracking-[0.8rem] text-xl ml-4 lg:ml-0'>NEW PRODUCT</h1>
               <p className='text-white font-bold text-4xl w-[18rem] py-6 leading-10 tracking-widest lg:text-6xl lg:w-[30rem] text-left flex-1'>XX 99 MARK ll HEADPHONES</p>
               <p className='text-lightGray opacity-75 w-[17rem] leading-7 font-light lg:w-[20rem]'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</p>
-             <Link href='/product/5'><Button className='mt-7 py-3' variant='primary'>SEE PRODUCT</Button></Link>
+             <Link href="/headphones/1"><Button className='mt-7 py-3' variant='primary'>SEE PRODUCT</Button></Link>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
               alt='speaker'
             />
           </div>
-          <div className='hidden md:block  mt-20 -mb-3'>
+          <div className='hidden md:block mt-20 -mb-3'>
             <Image
               width={300}
               height={300}
@@ -83,7 +83,7 @@ export default function Home() {
             />
             <div className='absolute space-y-10  translate-x-10 lg:translate-x-1/2'>
               <h1 className='text-black text-4xl text-left font-bold lg:text-5xl'>ZX7 SPEAKER</h1>
-              <Link href='/product/5'><Button variant='third'>SEE PRODUCT</Button></Link>
+              <Link href='/speaker/5'><Button variant='third'>SEE PRODUCT</Button></Link>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function Home() {
             <div className=' w-full  '>
               <div className='flex flex-col items-start p-12 justify-center gap-8 bg-gray rounded-xl h-full w-full flex-1'>
                 <h1 className='text-black text-4xl text-left font-bold lg:text-5xl'>YX1 EARPHONES</h1>
-                <Link href='/product/6'><Button variant='third'>SEE PRODUCT</Button></Link>
+                <Link href='/earphones/6'><Button variant='third'>SEE PRODUCT</Button></Link>
               </div>
             </div>
           </div>
