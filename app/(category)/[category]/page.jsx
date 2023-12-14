@@ -2,22 +2,12 @@ import Header from '@/components/Header'
 import React from 'react'
 import Product from './Product'
 import { getProducts } from './actions'
-import db from '@/lib/db/db'
-
-const products = await db.product.findMany({
-    select: {
-        id: true,
-        category: true
-    }
-})
-console.log(products)
 
 export default async function Category({ params }) {
 
     const { category } = params
 
     const catProducts = await getProducts(category)
-    
     const products = catProducts.map(cat => cat.product)
 
     return (

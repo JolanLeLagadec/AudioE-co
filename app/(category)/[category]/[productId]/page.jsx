@@ -1,3 +1,4 @@
+
 import Image from 'next/image'
 import React from 'react'
 import ButtonAddCart from '../ButtonAddCart'
@@ -6,23 +7,35 @@ import GoBack from './GoBack'
 import MayAlsoLike from './MayAlsoLike'
 
 
-const getProduct = async (id) => {
-const product = await db.product.findFirst({
-    where: { id },
-    include: {
-        category: true
-    }
-})
-return product
-}
+ export const dynamicParams = false
+
+    const products = await db.product.findMany({
+        select: {
+            id: true,
+            category: true
+        }
+    })
+ export const generateStaticParams = async () => { // On génère les paramètres en static pour build les différentes pages au moment du build, et non à la demande, comportement par défaut avec les routes dynamiques.
+   return products.map(product => ({
+        params: {
+       category: product.category.name,
+       product: product.id.toString()
+        }
+     }))  
+ }
 
 export default async function PageProduct({ params }) {
 
     const { productId } = params
-    const id = parseInt(productId)
 
-    const product = await getProduct(id)
-  
+    const id = parseInt(productId)
+    const product = await db.product.findFirst({
+        where: { id },
+        include: {
+            category: true
+        }
+    })
+
     const removePublicFromUrl = (url) => {
         return url.replace('public', '')
     }
