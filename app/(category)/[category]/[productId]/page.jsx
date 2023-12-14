@@ -1,4 +1,3 @@
-
 import Image from 'next/image'
 import React from 'react'
 import ButtonAddCart from '../ButtonAddCart'
@@ -7,19 +6,23 @@ import GoBack from './GoBack'
 import MayAlsoLike from './MayAlsoLike'
 
 
+const getProduct = async (id) => {
+const product = await db.product.findFirst({
+    where: { id },
+    include: {
+        category: true
+    }
+})
+return product
+}
 
 export default async function PageProduct({ params }) {
 
     const { productId } = params
-
     const id = parseInt(productId)
-    const product = await db.product.findFirst({
-        where: { id },
-        include: {
-            category: true
-        }
-    })
 
+    const product = await getProduct(id)
+  
     const removePublicFromUrl = (url) => {
         return url.replace('public', '')
     }

@@ -17,6 +17,7 @@ export default async function Category({ params }) {
     const { category } = params
 
     const catProducts = await getProducts(category)
+    
     const products = catProducts.map(cat => cat.product)
 
     return (
